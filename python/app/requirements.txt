@@ -1,0 +1,15 @@
+Flask
+art
+redis
+requests
+fastapi
+uvicorn
+tensorflow
+qdrant-client
+transformers
+python-multipart
+pydantic
+numpy
+selenium
+beautifulsoup4
+requests_html

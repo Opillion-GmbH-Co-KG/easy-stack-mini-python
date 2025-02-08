@@ -1,0 +1,39 @@
+services:
+
+  python:
+    hostname: python
+    container_name: python
+    restart: unless-stopped
+    build:
+      context: .docker/${DOCKER_IMAGE_SOURCE}/
+      dockerfile: python.Dockerfile
+      args:
+        BASE_IMAGE_TAG: ${BASE_IMAGE_TAG}
+        DEV_IMAGE_TAG: ${DEV_IMAGE_TAG}
+        PROD_IMAGE_TAG: ${PROD_IMAGE_TAG}
+    ports:
+      - "${PYTHON_EXTERNAL_PORT}:${PYTHON_INTERNAL_PORT}"  # 8862:5000
+      - "${PYTHON_EXTERNAL_PORT_TWO}:${PYTHON_INTERNAL_PORT_TWO}"  # 8863:5001
+    volumes:
+      - ./python/app:/home/python
+    user: python
+    command: ["/bin/sh", "-c", "python /home/python/web.py"]
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://python:${PYTHON_INTERNAL_PORT}"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
+    networks:
+      - default
+
+
+volumes:
+  python-data:
+  ollama_data:
+
+networks:
+  default:
+    name: ${DOCKER_NETWORK}
+    driver: bridge
+

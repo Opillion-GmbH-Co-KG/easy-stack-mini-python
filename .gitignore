@@ -1,0 +1,6 @@
+.idea
+.env
+/python/app/.local/
+/python/app/.bash_history
+/python/app/.pki/
+/python/app/.cache/

@@ -1,0 +1,5 @@
+run-python-%:
+	$(OUTPUT)$(PYTHON) python /home/python/$*
+
+install-requirements:
+	$(OUTPUT)$(PYTHON) pip install --no-cache-dir -r /home/python/requirements.txt
