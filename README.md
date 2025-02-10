@@ -25,7 +25,7 @@ Clone this Project
 ```sh
 git clone git@github.com:Opillion-GmbH-Co-KG/easy-stack-python.git
 
-cd ./easy-stack-mini
+cd ./easy-stack-python
 
  ```
 
