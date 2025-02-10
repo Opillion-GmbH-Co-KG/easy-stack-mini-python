@@ -15,7 +15,7 @@ services:
       - "${PYTHON_EXTERNAL_PORT}:${PYTHON_INTERNAL_PORT}"  # 8862:5000
       - "${PYTHON_EXTERNAL_PORT_TWO}:${PYTHON_INTERNAL_PORT_TWO}"  # 8863:5001
     volumes:
-      - ./python/app:/home/python
+      - ${PYTHON_DATA_PATH:-python-data}:/home/python
     user: python
     command: ["/bin/sh", "-c", "python /home/python/web.py"]
     healthcheck:
@@ -27,10 +27,8 @@ services:
     networks:
       - default
 
-
 volumes:
   python-data:
-  ollama_data:
 
 networks:
   default:
